@@ -79,7 +79,17 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="inline-block rounded-full border border-white/20 bg-white/5 px-4 py-2 backdrop-blur-sm"
           >
-            <span className="text-sm text-white/60">Une entité Void Corp</span>
+            <span className="text-sm text-white/60">
+              Une entité{" "}
+              <a
+                href="https://voidcorp.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white/80 transition-colors"
+              >
+                Void Corp
+              </a>
+            </span>
           </motion.div>
         </motion.div>
 
@@ -332,7 +342,18 @@ export default function App() {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
               <VolpioLogo className="h-8 w-8" />
-              <span className="text-white/60">© 2025 Void Corp / Volpio</span>
+              <span className="text-white/60">
+                © 2025{" "}
+                <a
+                  href="https://voidcorp.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white/80 transition-colors"
+                >
+                  Void Corp
+                </a>{" "}
+                / Volpio
+              </span>
             </div>
             <div className="text-white/40">Forgé en France</div>
           </div>
