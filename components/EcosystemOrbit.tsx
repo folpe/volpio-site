@@ -99,7 +99,7 @@ export const EcosystemOrbit = () => {
 
             {/* Entity card container */}
             <motion.div
-              className="absolute"
+              className="absolute flex items-center justify-center"
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
@@ -118,7 +118,7 @@ export const EcosystemOrbit = () => {
               }}
             >
               <motion.div
-                className="relative min-w-[140px] rounded-xl border-2 p-4 text-center backdrop-blur-md"
+                className="relative w-[140px] rounded-xl border-2 p-4 text-center backdrop-blur-md"
                 style={{
                   borderColor: `${entity.color}40`,
                   background: `linear-gradient(135deg, ${entity.color}20, ${entity.color}05)`,
