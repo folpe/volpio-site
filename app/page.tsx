@@ -325,11 +325,14 @@ export default function App() {
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button
+                asChild
                 className="rounded-full border-0 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 px-8 py-6 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,107,53,0.5)]"
                 style={{ fontSize: "1.125rem" }}
               >
-                Prendre Contact
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <a href="mailto:florent.pellegrin@volpio.com">
+                  Prendre Contact
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
               </Button>
             </motion.div>
           </motion.div>
