@@ -97,13 +97,33 @@ export const EcosystemOrbit = () => {
               }}
             />
 
-            {/* Entity card container */}
+            {/* Position marker circle */}
             <motion.div
-              className="absolute flex items-center justify-center"
+              className="absolute z-20 h-3 w-3 rounded-full"
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
                 transform: "translate(-50%, -50%)",
+                backgroundColor: entity.color,
+                boxShadow: `0 0 10px ${entity.color}`,
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: 0.8,
+                scale: 1,
+              }}
+              transition={{
+                delay: 0.5 + index * 0.2,
+                duration: 0.6,
+              }}
+            />
+
+            {/* Entity card container */}
+            <motion.div
+              className="absolute"
+              style={{
+                left: `calc(50% + ${x}px)`,
+                top: `calc(50% + ${y}px)`,
               }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{
@@ -122,6 +142,7 @@ export const EcosystemOrbit = () => {
                 style={{
                   borderColor: `${entity.color}40`,
                   background: `linear-gradient(135deg, ${entity.color}20, ${entity.color}05)`,
+                  transform: "translate(-50%, -50%)",
                 }}
                 whileHover={{
                   scale: 1.1,
