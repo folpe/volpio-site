@@ -75,10 +75,10 @@ export const EcosystemOrbit = () => {
           <React.Fragment key={entity.name}>
             {/* Connection line to center - only visible on hover */}
             <motion.div
-              className="absolute"
+              className="absolute z-10"
               style={{
                 left: "50%",
-                top: "50%",
+                top: "calc(50% - 1px)",
                 width: radius,
                 height: 2,
                 background: `linear-gradient(to right, rgba(255, 255, 255, 0.5), ${entity.color})`,
@@ -124,6 +124,7 @@ export const EcosystemOrbit = () => {
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
+                transform: "translate(-50%, -50%)",
               }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{
@@ -142,7 +143,6 @@ export const EcosystemOrbit = () => {
                 style={{
                   borderColor: `${entity.color}40`,
                   background: `linear-gradient(135deg, ${entity.color}20, ${entity.color}05)`,
-                  transform: "translate(-50%, -50%)",
                 }}
                 whileHover={{
                   scale: 1.1,
