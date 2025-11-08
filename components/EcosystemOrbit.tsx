@@ -16,6 +16,7 @@ export const EcosystemOrbit = () => {
     { name: "Volpio", role: "Le Flux", angle: 30, color: "#f97316" },
   ]
 
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
   const radius = 160
 
   return (
@@ -38,15 +39,30 @@ export const EcosystemOrbit = () => {
         className="absolute rounded-full border border-white/20"
         style={{ width: radius * 2, height: radius * 2 }}
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        animate={{
+          opacity: [1, 0.8, 1],
+          scale: [1, 1.02, 1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
       <motion.div
         className="absolute rounded-full border border-white/10"
         style={{ width: radius * 2 + 80, height: radius * 2 + 80 }}
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, delay: 0.1, ease: "easeOut" }}
+        animate={{
+          opacity: [1, 0.6, 1],
+          scale: [1, 1.03, 1],
+        }}
+        transition={{
+          duration: 5,
+          delay: 0.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       {/* Entities */}
@@ -57,30 +73,62 @@ export const EcosystemOrbit = () => {
 
         return (
           <React.Fragment key={entity.name}>
-            {/* Connection line to center */}
-            <motion.div
-              className="absolute"
-              style={{
-                left: "50%",
-                top: "50%",
-                width: radius,
-                height: 2,
-                background: `linear-gradient(to right, rgba(255, 255, 255, 0.3), ${entity.color}40)`,
-                transformOrigin: "0 50%",
-                transform: `rotate(${entity.angle}deg)`,
-              }}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.5 + index * 0.2, duration: 0.8, ease: "easeOut" }}
-            />
+            {/* Connection line using SVG for precise positioning */}
+            <svg
+              className="absolute inset-0 pointer-events-none overflow-visible"
+              style={{ width: '100%', height: '100%' }}
+            >
+              <motion.line
+                x1="50%"
+                y1="50%"
+                x2={`calc(50% + ${x}px)`}
+                y2={`calc(50% + ${y}px)`}
+                stroke={entity.color}
+                strokeWidth="2"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{
+                  pathLength: hoveredIndex === index ? 1 : 0,
+                  opacity: hoveredIndex === index ? 1 : 0,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "easeOut",
+                }}
+                style={{
+                  filter: `drop-shadow(0 0 10px ${entity.color}80)`,
+                }}
+              />
+            </svg>
 
-            {/* Entity card container */}
+            {/* Position marker circle */}
             <motion.div
-              className="absolute"
+              className="absolute z-20 h-3 w-3 rounded-full"
               style={{
                 left: `calc(50% + ${x}px)`,
                 top: `calc(50% + ${y}px)`,
                 transform: "translate(-50%, -50%)",
+                backgroundColor: entity.color,
+                boxShadow: `0 0 10px ${entity.color}`,
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{
+                opacity: 0.8,
+                scale: 1,
+              }}
+              transition={{
+                delay: 0.5 + index * 0.2,
+                duration: 0.6,
+              }}
+            />
+
+            {/* Entity card */}
+            <motion.div
+              className="absolute z-30"
+              style={{
+                left: `calc(50% + ${x}px)`,
+                top: `calc(50% + ${y}px)`,
+                x: "-50%",
+                y: "-50%",
               }}
               initial={{ opacity: 0, scale: 0 }}
               animate={{
@@ -93,12 +141,18 @@ export const EcosystemOrbit = () => {
                 type: "spring",
                 stiffness: 100,
               }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <motion.div
-                className="relative min-w-[140px] rounded-xl border-2 p-4 text-center backdrop-blur-md"
+                className="relative rounded-xl border-2 p-4 text-center backdrop-blur-md"
                 style={{
                   borderColor: `${entity.color}40`,
                   background: `linear-gradient(135deg, ${entity.color}20, ${entity.color}05)`,
+                  width: "140px",
+                }}
+                animate={{
+                  borderColor: `${entity.color}40`,
                 }}
                 whileHover={{
                   scale: 1.1,
