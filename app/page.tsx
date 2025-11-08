@@ -241,24 +241,24 @@ export default function App() {
             {[
               {
                 image:
-                  "https://images.unsplash.com/photo-1758411898049-4de9588be514?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBkYXNoYm9hcmQlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU5OTk2MzIyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-                title: "Tableau de bord automatisé",
-                category: "Agence Immobilière",
-                metric: "–60% d'opérations manuelles",
+                  "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+                title: "Plateforme d'orchestration bancaire",
+                category: "Finance · BNP Paribas CIB",
+                metric: "2M+ opérations/jour",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1605513524042-426bace35fc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaSUyMGF1dG9tYXRpb24lMjBjb2RlfGVufDF8fHx8MTc2MDAxNjg1Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-                title: "Assistant IA interne",
-                category: "Intégration IA",
-                metric: "Productivité +40%",
+                  "https://images.unsplash.com/photo-1563013544-824ae1b704d3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+                title: "Validation réglementaire Banque de France",
+                category: "Fintech · My Money Bank",
+                metric: "0 → Production en 9 mois",
               },
               {
                 image:
-                  "https://images.unsplash.com/photo-1716062571047-9426d8098e05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjbGVhbiUyMGFyY2hpdGVjdHVyZSUyMGRlc2lnbnxlbnwxfHx8fDE3NjAwMTY4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-                title: "Architecture Front React",
-                category: "SaaS B2B",
-                metric: "Temps de build –50%",
+                  "https://images.unsplash.com/photo-1626785774573-4b799315345d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+                title: "Plateforme vidéo à fort trafic",
+                category: "Média · Le Figaro",
+                metric: "Live streaming & RGPD",
               },
             ].map((project, index) => (
               <motion.div
