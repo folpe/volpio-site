@@ -41,11 +41,15 @@ export const FlowVisualization = () => {
     const segmentProgress = (progress % segmentLength) / segmentLength
 
     if (currentSegment >= totalSegments) {
-      return { x: nodes[nodes.length - 1].x, y: nodes[nodes.length - 1].y }
+      return { x: nodes[nodes.length - 1]?.x, y: nodes[nodes.length - 1]?.y }
     }
 
     const startNode = nodes[currentSegment]
     const endNode = nodes[currentSegment + 1]
+
+    if (!startNode || !endNode) {
+      return { x: nodes[0]?.x ?? 0, y: nodes[0]?.y ?? 0 }
+    }
 
     return {
       x: startNode.x + (endNode.x - startNode.x) * segmentProgress,
