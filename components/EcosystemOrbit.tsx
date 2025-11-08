@@ -16,6 +16,7 @@ export const EcosystemOrbit = () => {
     { name: "Volpio", role: "Le Flux", angle: 30, color: "#f97316" },
   ]
 
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null)
   const radius = 160
 
   return (
@@ -38,15 +39,30 @@ export const EcosystemOrbit = () => {
         className="absolute rounded-full border border-white/20"
         style={{ width: radius * 2, height: radius * 2 }}
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        animate={{
+          opacity: [1, 0.8, 1],
+          scale: [1, 1.02, 1],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
       <motion.div
         className="absolute rounded-full border border-white/10"
         style={{ width: radius * 2 + 80, height: radius * 2 + 80 }}
         initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.4, delay: 0.1, ease: "easeOut" }}
+        animate={{
+          opacity: [1, 0.6, 1],
+          scale: [1, 1.03, 1],
+        }}
+        transition={{
+          duration: 5,
+          delay: 0.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
       />
 
       {/* Entities */}
@@ -57,7 +73,7 @@ export const EcosystemOrbit = () => {
 
         return (
           <React.Fragment key={entity.name}>
-            {/* Connection line to center */}
+            {/* Connection line to center - only visible on hover */}
             <motion.div
               className="absolute"
               style={{
@@ -65,13 +81,20 @@ export const EcosystemOrbit = () => {
                 top: "50%",
                 width: radius,
                 height: 2,
-                background: `linear-gradient(to right, rgba(255, 255, 255, 0.3), ${entity.color}40)`,
+                background: `linear-gradient(to right, rgba(255, 255, 255, 0.5), ${entity.color})`,
                 transformOrigin: "0 50%",
                 transform: `rotate(${entity.angle}deg)`,
+                boxShadow: `0 0 10px ${entity.color}80`,
               }}
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ delay: 0.5 + index * 0.2, duration: 0.8, ease: "easeOut" }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{
+                scaleX: hoveredIndex === index ? 1 : 0,
+                opacity: hoveredIndex === index ? 1 : 0,
+              }}
+              transition={{
+                duration: 0.3,
+                ease: "easeOut",
+              }}
             />
 
             {/* Entity card container */}
@@ -110,6 +133,8 @@ export const EcosystemOrbit = () => {
                   stiffness: 400,
                   damping: 10,
                 }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 {entity.url ? (
                   <a
