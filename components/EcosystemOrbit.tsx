@@ -187,58 +187,78 @@ export const EcosystemOrbit = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <motion.div
-                className={entityVariants({ variant: entity.variant })}
-                whileHover={{
-                  scale: 1.1,
-                  borderColor: color,
-                  boxShadow: `0 0 20px ${color}60`,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 10,
-                }}
-              >
-                {entity.url ? (
-                  <a
-                    href={entity.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
+              {entity.url ? (
+                <motion.a
+                  href={entity.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${entityVariants({ variant: entity.variant })} cursor-pointer`}
+                  whileHover={{
+                    scale: 1.1,
+                    borderColor: color,
+                    boxShadow: `0 0 20px ${color}60`,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
+                  }}
+                >
+                  <div
+                    className={textVariants({ variant: entity.variant })}
+                    style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
                   >
-                    <div
-                      className={textVariants({ variant: entity.variant })}
-                      style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
-                    >
-                      {entity.name}
-                    </div>
-                    <div className="text-[10px] text-white/60">{entity.role}</div>
-                  </a>
-                ) : (
-                  <>
-                    <div
-                      className={textVariants({ variant: entity.variant })}
-                      style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
-                    >
-                      {entity.name}
-                    </div>
-                    <div className="text-[10px] text-white/60">{entity.role}</div>
-                  </>
-                )}
+                    {entity.name}
+                  </div>
+                  <div className="text-[10px] text-white/60">{entity.role}</div>
 
-                {/* Active indicator for Volpio */}
-                {entity.name === "Volpio" && (
-                  <motion.div
-                    className={indicatorVariants({ variant: entity.variant })}
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                )}
-              </motion.div>
+                  {/* Active indicator for Volpio */}
+                  {entity.name === "Volpio" && (
+                    <motion.div
+                      className={indicatorVariants({ variant: entity.variant })}
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  )}
+                </motion.a>
+              ) : (
+                <motion.div
+                  className={entityVariants({ variant: entity.variant })}
+                  whileHover={{
+                    scale: 1.1,
+                    borderColor: color,
+                    boxShadow: `0 0 20px ${color}60`,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 10,
+                  }}
+                >
+                  <div
+                    className={textVariants({ variant: entity.variant })}
+                    style={{ fontFamily: "'Montserrat Alternates', sans-serif" }}
+                  >
+                    {entity.name}
+                  </div>
+                  <div className="text-[10px] text-white/60">{entity.role}</div>
+
+                  {/* Active indicator for Volpio */}
+                  {entity.name === "Volpio" && (
+                    <motion.div
+                      className={indicatorVariants({ variant: entity.variant })}
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  )}
+                </motion.div>
+              )}
             </motion.div>
           </React.Fragment>
         )
