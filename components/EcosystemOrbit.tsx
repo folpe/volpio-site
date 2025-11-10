@@ -43,7 +43,7 @@ const textVariants = cva("mb-1 text-sm font-semibold", {
   },
 })
 
-const indicatorVariants = cva("absolute -top-2 -right-2 size-4 rounded-full", {
+const indicatorVariants = cva("mt-2 mx-auto size-2 rounded-full", {
   variants: {
     variant: {
       voidcorp: "bg-slate-500",
@@ -211,18 +211,6 @@ export const EcosystemOrbit = () => {
                     {entity.name}
                   </div>
                   <div className="text-[10px] text-white/60">{entity.role}</div>
-
-                  {/* Active indicator for Volpio */}
-                  {entity.name === "Volpio" && (
-                    <motion.div
-                      className={indicatorVariants({ variant: entity.variant })}
-                      animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.7, 1, 0.7],
-                      }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    />
-                  )}
                 </motion.a>
               ) : (
                 <motion.div
